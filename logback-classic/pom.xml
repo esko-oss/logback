@@ -11,15 +11,23 @@
     <version>1.2.3</version>
   </parent>
 
+  <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
+  <version>1.2.3-0</version>
   <artifactId>logback-classic</artifactId>
   <packaging>jar</packaging>
   <name>Logback Classic Module</name>
   <description>logback-classic module</description>
+  
+  <scm>
+    <url>https://github.com/spangaer/logback</url>
+    <connection>git@github.com:spangaer/logback.git</connection>
+  </scm>
 
   <dependencies>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
+      <version>${project.parent.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -116,6 +124,7 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
+      <version>${project.parent.version}</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
@@ -220,6 +229,24 @@
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>org/slf4j/impl/*.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.8</version>
         <dependencies>
@@ -236,6 +263,7 @@
         </dependencies>
 
         <executions>
+          <!--
           <execution>
             <id>ant-osgi-test</id>
             <phase>package</phase>
@@ -264,6 +292,19 @@
             <goals>
               <goal>run</goal>
             </goals>
+          </execution>
+          -->
+          <execution>
+            <phase>prepare-package</phase>
+            <goals>
+               <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <echo>Removing slf4j-api's dummy StaticLoggerBinder and StaticMarkerBinder</echo>
+                <delete dir="target/classes/org/slf4j/impl"/>
+              </tasks>
+            </configuration>
           </execution>
         </executions>
       </plugin>
