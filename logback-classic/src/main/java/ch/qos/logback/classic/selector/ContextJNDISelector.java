@@ -29,13 +29,14 @@ import javax.naming.NamingException;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.classic.util.ContextInitializer;
-import ch.qos.logback.classic.util.JNDIUtil;
 import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.status.InfoStatus;
 import ch.qos.logback.core.status.StatusManager;
 import ch.qos.logback.core.status.StatusUtil;
 import ch.qos.logback.core.status.WarnStatus;
+import ch.qos.logback.core.util.JNDIUtil;
 import ch.qos.logback.core.util.Loader;
+import ch.qos.logback.core.util.OptionHelper;
 import ch.qos.logback.core.util.StatusPrinter;
 
 /**
@@ -88,7 +89,7 @@ public class ContextJNDISelector implements ContextSelector {
             // We can't log here
         }
 
-        if (contextName == null) {
+        if (OptionHelper.isEmpty(contextName)) {
             // We return the default context
             return defaultContext;
         } else {
@@ -124,7 +125,11 @@ public class ContextJNDISelector implements ContextSelector {
     private URL findConfigFileURL(Context ctx, LoggerContext loggerContext) {
         StatusManager sm = loggerContext.getStatusManager();
 
-        String jndiEntryForConfigResource = JNDIUtil.lookup(ctx, JNDI_CONFIGURATION_RESOURCE);
+        String jndiEntryForConfigResource = null;
+        try {
+            jndiEntryForConfigResource = JNDIUtil.lookup(ctx, JNDI_CONFIGURATION_RESOURCE);
+        } catch (NamingException ne) {
+        }
         // Do we have a dedicated configuration file?
         if (jndiEntryForConfigResource != null) {
             sm.add(new InfoStatus("Searching for [" + jndiEntryForConfigResource + "]", this));

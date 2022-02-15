@@ -11,7 +11,9 @@
  * under the terms of the GNU Lesser General Public License version 2.1
  * as published by the Free Software Foundation.
  */
-package ch.qos.logback.classic.util;
+package ch.qos.logback.core.util;
+
+import static ch.qos.logback.core.CoreConstants.JNDI_JAVA_NAMESPACE;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -21,24 +23,33 @@ import javax.naming.NamingException;
  * A simple utility class to create and use a JNDI Context.
  *
  * @author Ceki G&uuml;lc&uuml;
+ * @author Michael Osipov 
  * @author S&eacute;bastien Pennec
+ * 
  */
 
 public class JNDIUtil {
 
-    public static Context getInitialContext() throws NamingException {
+    static final String RESTRICTION_MSG = "JNDI name must start with " + JNDI_JAVA_NAMESPACE + " but was ";
+
+	public static Context getInitialContext() throws NamingException {
         return new InitialContext();
     }
 
-    public static String lookup(Context ctx, String name) {
+    public static String lookup(Context ctx, String name) throws NamingException {
         if (ctx == null) {
             return null;
         }
-        try {
-            Object lookup = ctx.lookup(name);
-            return lookup == null ? null : lookup.toString();
-        } catch (NamingException e) {
+
+        if (OptionHelper.isEmpty(name)) {
             return null;
         }
+
+        if (!name.startsWith(JNDI_JAVA_NAMESPACE)) {
+            throw new NamingException(RESTRICTION_MSG + name);
+        }
+
+        Object lookup = ctx.lookup(name);
+        return lookup == null ? null : lookup.toString();
     }
 }
