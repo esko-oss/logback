@@ -12,15 +12,15 @@
   </parent>
 
   <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
-  <version>1.2.10-0</version>
+  <version>SNAPSHOT</version>
   <artifactId>logback-classic</artifactId>
   <packaging>jar</packaging>
   <name>Logback Classic Module</name>
   <description>logback-classic module</description>
   
   <scm>
-    <url>https://github.com/spangaer/logback</url>
-    <connection>git@github.com:spangaer/logback.git</connection>
+    <url>https://github.com/esko-oss/logback</url>
+    <connection>https://github.com/esko-oss/logback.git</connection>
   </scm>
 
   <dependencies>
