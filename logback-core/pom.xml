@@ -6,9 +6,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>ch.qos.logback</groupId>
+    <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
     <artifactId>logback-parent</artifactId>
-    <version>1.2.13</version>
+    <version>SNAPSHOT</version>
   </parent>
 
   <artifactId>logback-core</artifactId>

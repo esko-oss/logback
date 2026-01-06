@@ -6,26 +6,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>ch.qos.logback</groupId>
+    <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
     <artifactId>logback-parent</artifactId>
-    <version>1.2.13</version>
+    <version>SNAPSHOT</version>
   </parent>
 
-  <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
-  <version>SNAPSHOT</version>
   <artifactId>logback-classic</artifactId>
   <packaging>jar</packaging>
   <name>Logback Classic Module</name>
   <description>logback-classic module</description>
-  
-  <scm>
-    <url>https://github.com/esko-oss/logback</url>
-    <connection>https://github.com/esko-oss/logback.git</connection>
-  </scm>
 
   <dependencies>
     <dependency>
-      <groupId>ch.qos.logback</groupId>
+      <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
       <artifactId>logback-core</artifactId>
       <version>${project.parent.version}</version>
       <scope>compile</scope>
@@ -98,7 +91,7 @@
 
       
     <dependency>
-      <groupId>ch.qos.logback</groupId>
+      <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
       <artifactId>logback-core</artifactId>
       <version>${project.parent.version}</version>
       <type>test-jar</type>

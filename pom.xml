@@ -5,9 +5,9 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ch.qos.logback</groupId>
+  <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
   <artifactId>logback-parent</artifactId>
-  <version>1.2.13</version>
+  <version>SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Logback-Parent</name>
@@ -34,8 +34,8 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/qos-ch/logback</url>
-    <connection>scm:git@github.com:qos-ch/logback.git</connection>
+    <url>https://github.com/esko-oss/logback</url>
+    <connection>https://github.com/esko-oss/logback.git</connection>
   </scm>
 
   <modules>
@@ -111,12 +111,12 @@
     <dependencies>
       <!-- start of dependencies duplicated from logback-bom/pom.xml -->
       <dependency>
-        <groupId>ch.qos.logback</groupId>
+        <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
         <artifactId>logback-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>ch.qos.logback</groupId>
+        <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -126,12 +126,12 @@
         <version>${slf4j.version}</version>
       </dependency>
       <dependency>
-        <groupId>ch.qos.logback</groupId>
+        <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
         <artifactId>logback-access</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>ch.qos.logback</groupId>
+        <groupId>com.esko.cloud.core.jvm.agent.logback</groupId>
         <artifactId>logback-core</artifactId>
         <version>${project.version}</version>
         <type>test-jar</type>
