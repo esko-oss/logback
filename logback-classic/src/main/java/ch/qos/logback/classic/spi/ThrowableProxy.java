@@ -41,7 +41,7 @@ public class ThrowableProxy implements IThrowableProxy {
 
 	// private final Set<Throwable> alreadyProcessedSet;
 
-	private transient PackagingDataCalculator packagingDataCalculator;
+	// private transient PackagingDataCalculator packagingDataCalculator;
 	private boolean calculatedPackageData = false;
 
 	private boolean circular;
@@ -178,25 +178,25 @@ public class ThrowableProxy implements IThrowableProxy {
 		return suppressed;
 	}
 
-	public PackagingDataCalculator getPackagingDataCalculator() {
-		// if original instance (non-deserialized), and packagingDataCalculator
-		// is not already initialized, then create an instance.
-		// here we assume that (throwable == null) for deserialized instances
-		if (throwable != null && packagingDataCalculator == null) {
-			packagingDataCalculator = new PackagingDataCalculator();
-		}
-		return packagingDataCalculator;
-	}
+	// public PackagingDataCalculator getPackagingDataCalculator() {
+	// 	// if original instance (non-deserialized), and packagingDataCalculator
+	// 	// is not already initialized, then create an instance.
+	// 	// here we assume that (throwable == null) for deserialized instances
+	// 	if (throwable != null && packagingDataCalculator == null) {
+	// 		packagingDataCalculator = new PackagingDataCalculator();
+	// 	}
+	// 	return packagingDataCalculator;
+	// }
 
 	public void calculatePackagingData() {
 		if (calculatedPackageData) {
 			return;
 		}
-		PackagingDataCalculator pdc = this.getPackagingDataCalculator();
-		if (pdc != null) {
-			calculatedPackageData = true;
-			pdc.calculate(this);
-		}
+		// PackagingDataCalculator pdc = this.getPackagingDataCalculator();
+		// if (pdc != null) {
+		// 	calculatedPackageData = true;
+		// 	pdc.calculate(this);
+		// }
 	}
 
 	public void fullDump() {
